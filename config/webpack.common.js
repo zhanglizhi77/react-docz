@@ -33,11 +33,18 @@ module.exports = {
             }
         ]
     },
+    optimization:{
+        splitChunks:{
+            cacheGroups:{
+                vendor:{
+                    test:/node_modules/,
+                    name:'vendor',
+                    chunks:'initial'
+                }
+            }
+        }
+    },
     plugins:[
-        new Webpack.optimize.CommonsChunkPlugin({
-            name:['vendor','mainfest'],
-            filename:'index.[hash:4].js'
-        }),
         new HtmlWebpackPlugin({
             template:'src/index.html',
             title:'my-react-app'
