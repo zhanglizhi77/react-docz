@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Webpack = require('webpack');
+const webpack = require('webpack');
+const px2rem  = require('postcss-plugin-px2rem');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
     entry:{
@@ -20,7 +22,7 @@ module.exports = {
             },
             {
                 test:/\.less/,
-                use:['style-loader','css-loader','less-loader']
+                use:['style-loader','css-loader','less-loader','postcss-loader']
             },
             {
                 test:/\.(png|jpe?g|git)$/,
@@ -48,6 +50,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             template:'src/index.html',
             title:'my-react-app'
-        })
+        }),
+        // new webpack.LoaderOptionsPlugin({
+        //     options: {
+        //         postcss:()=>{
+        //             return [
+        //                 autoprefixer,
+        //                 px2rem()
+        //             ]
+        //         }
+        //     }
+        // })
     ]
 }
