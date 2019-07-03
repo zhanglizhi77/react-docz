@@ -2,8 +2,23 @@
     width:345px;
     height:44px;
     border:none;
-}
-.lz_button_primary{
-    background: #2772D8;
-    border-radius:5px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    outline: none;
+    cursor: pointer;
+    span{
+        font-size: 18px;
+        color: #FFF;
+    }
+    .lz_icon{
+        padding-right: 6px;
+    }
+    &.lz_button_default{
+        background: #2772D8;
+        border-radius:5px;
+        &:active{
+            background:rgba(39,114,216,.5);
+        }
+    }
 }

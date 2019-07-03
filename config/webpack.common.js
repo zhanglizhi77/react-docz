@@ -1,8 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const px2rem  = require('postcss-plugin-px2rem');
-const autoprefixer = require('autoprefixer');
+const MiniCssExtractPlugin= require('mini-css-extract-plugin');
 
 module.exports = {
     entry:{
@@ -21,11 +20,19 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
+                test:/\.css/,
+                use:[MiniCssExtractPlugin.loader,'css-loader']
+            },
+            {
                 test:/\.less/,
                 use:['style-loader','css-loader','less-loader','postcss-loader']
             },
             {
-                test:/\.(png|jpe?g|git)$/,
+                test: /\.(eot|svg|ttf|woff|woff2)\w*/,
+                use: 'file-loader'
+            },
+            {
+                test:/\.(png|jpe?g|gif)$/,
                 use:[{
                     loader:'url-loader',
                     options:{

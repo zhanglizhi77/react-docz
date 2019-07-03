@@ -2,7 +2,7 @@ import React from 'react';
 import './button.component.less';
 const Button = (props)=>{
     const basicAttributes = {
-        type:'primary', //按钮类型
+        type:'default', //按钮类型
         iconClassName:'',  //是否有icon图标 传入字体图标样式名称
     }
     const {
@@ -16,8 +16,8 @@ const Button = (props)=>{
         <button 
             className={`lz_button lz_button_${type}`}
             onClick={onClick} >
-            {iconClassName!='' ? <span className={iconClassName}></span> : null}
-            <span>{children}</span>
+            {iconClassName!='' ? <span className={`lz_icon ${iconClassName}`}></span> : null}
+            <span className="lz_text">{children}</span>
         </button>
     );
 }
