@@ -1,24 +1,21 @@
 import React,{Component} from 'react';
-import Button from '../../components/Button/Button';
-import { HOC } from './../../utils/tools';
+import buttonList from './button';
+import { HOC,generatedTab,createDom } from './../../utils/tools';
+import apiList from './api';
 import './button.less';
 class ButtonComponent extends Component{
-    showCode(){
-        return (
-            <code className="button_text_wrap">
-                <p>{`<Button>default</Button>`}</p>
-                <p>{`<Button iconClassName="iconfont icon_loading"}>default</Button>`}</p>
-            </code>
-        );
-    }
     render(){
         return (
             <React.Fragment>
+                <div className="content_desc_title">代码演示</div>
                 <div className="button_wrap">
-                    <p><Button>default</Button></p>
-                    <p><Button iconClassName="iconfont icon_loading">default</Button></p>
+                    {
+                        buttonList.map((val,key)=>{
+                            return createDom(val,key);
+                        })
+                    }   
                 </div>
-                {this.showCode()}
+                {generatedTab(apiList)}
             </React.Fragment>
         );
     }

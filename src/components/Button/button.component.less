@@ -1,6 +1,5 @@
+@import './../base.less';
 .lz_button{
-    width:345px;
-    height:44px;
     border:none;
     display: flex;
     align-items: center;
@@ -9,16 +8,77 @@
     cursor: pointer;
     span{
         font-size: 18px;
-        color: #FFF;
+        color: @white;
     }
     .lz_icon{
         padding-right: 6px;
     }
     &.lz_button_default{
-        background: #2772D8;
-        border-radius:5px;
-        &:active{
-            background:rgba(39,114,216,.5);
+        background: @blue;
+    }
+    &.lz_button_transparent{
+        border:1px solid @blue;
+        background: transparent;
+        span{
+            color:@blue;
         }
+    }
+    &.lz_button_danger{
+        background:linear-gradient(124deg,@red_1 0%,@red_2 100%);
+    }
+    &.lz_button_gradient{
+        background:linear-gradient(126deg,@blue_1 0%,@blue_2 100%);
+        span{
+            color: @white;
+        }
+    }
+    &.lz_button_big{
+        width:345px;
+        height:44px;
+    } 
+    &.lz_button_small{
+        width:110px;
+        height:36px;
+    }
+    &.lz_button_middle{
+        width:165px;
+        height:44px;
+    }
+    &.lz_button_square{
+        border-radius:5px;
+    }
+    &.lz_button_circle{
+        border-radius:22px;
+    }
+    &.lz_button_block{
+        width:100%;
+        height:44px;
+    }
+    &.lz_button_link{
+        background: @white;
+        width: auto;
+        height: auto;
+        span{
+            color: @blue;
+            font-size: 14px;
+        }
+        .lz_icon{
+            order: 2;
+            padding-right: 0;
+            width: 14px;
+            height: 14px;
+        }
+    }
+    &.lz_button_disabled{
+        background:rgba(39,114,216,.5);
+        &:hover{
+            cursor: no-drop;
+        }
+        &:active{
+            opacity: 1;
+        }
+    }
+    &:active{
+        opacity: .5;
     }
 }

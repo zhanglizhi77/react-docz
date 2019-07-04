@@ -1,15 +1,14 @@
 import React from "react";
 import {goUrl} from './../../utils/tools';
+import navList from './nav';
 import "./nav.less";
 
 class Nav extends React.Component{
     constructor(props){
         super(props);
+        console.log(window.location.href);
         this.state = {
-            navList:[{
-                name:'Button',
-                isActive:false
-            }]
+            navList
         }
         this.toHello = this.toHello.bind(this);
     }
@@ -19,13 +18,13 @@ class Nav extends React.Component{
             if(key == index){
                 navList[index].isActive = true;
             }else{
-                val.isActive = true;
+                val.isActive = false;
             }
         });    
         this.setState({navList});
         const urlName = navList[index].name;
         const url = urlName.replace(urlName[0],urlName[0].toLowerCase());
-        goUrl('/'+url);
+        goUrl('/'+url.replace(/\s/g,""));
     }
     toHello(){
         const navList = this.state.navList;
@@ -33,7 +32,7 @@ class Nav extends React.Component{
             val.isActive = false;
         });
         this.setState({navList});  
-        goUrl.bind(this,'/hello')
+        goUrl('/hello')
     }
     render(){
         const {navList} = this.state;

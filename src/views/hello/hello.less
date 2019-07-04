@@ -1,4 +1,13 @@
 .hello_word{
     text-align: center;
     padding: 100px 0;
+    font-size: 22px;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(.4, #4d4d4d), color-stop(.5, white), color-stop(.6, #4d4d4d), color-stop(1, #4d4d4d));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate 1.5s infinite;
+}
+@keyframes animate {
+    from {background-position: -100px;}
+    to {background-position: 100px;}
 }
