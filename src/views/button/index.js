@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import buttonList from './button';
+import buttonList from './component';
 import { HOC,generatedTab,createDom } from './../../utils/tools';
 import apiList from './api';
 import './button.less';

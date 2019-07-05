@@ -1,14 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './button.component.less';
 const Button = (props)=>{
-    const basicAttributes = {
-        type:'default', //按钮类型
-        iconClassName:'',  //是否有icon图标 传入字体图标样式名称
-        disabled:false,  //按钮是否可用
-        block:false, // 是否自适应父级宽度
-        size:'big', //按钮大小
-        shape:'square', //按钮形状
-    }
     const {
         type,
         children,
@@ -18,7 +11,7 @@ const Button = (props)=>{
         block,
         size,
         shape,
-    } = Object.assign({},basicAttributes,props);
+    } = props;
     const handleClick = () =>{
         if(!disabled){
             if(onClick && typeof onClick == 'function'){
@@ -41,4 +34,28 @@ const Button = (props)=>{
         </button>
     );
 }
+/**
+ * type           按钮类型
+ * iconClassName  是否有icon图标 传入字体图标样式名称
+ * disabled       按钮是否可用
+ * block          是否自适应父级宽度
+ * size           按钮大小
+ * shape          按钮形状 
+ * */  
+Button.propTypes = {
+    type:PropTypes.string,
+    iconClassName:PropTypes.string, 
+    disabled:PropTypes.bool, 
+    block:PropTypes.bool,
+    size:PropTypes.string,
+    shape:PropTypes.string,
+};
+Button.defaultProps = {
+    type:'default', 
+    iconClassName:'',
+    disabled:false,
+    block:false,
+    size:'big',
+    shape:'square',
+};
 export default Button;
