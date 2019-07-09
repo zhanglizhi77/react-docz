@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import exp from './../../utils/exp';
 import './captchaPopup.component.less'
 class CaptchaPopup extends React.Component{
     constructor(props){
@@ -20,6 +21,11 @@ class CaptchaPopup extends React.Component{
             this.setFocus(0);
         }
     }
+    _setState(list=this.state.codeList){
+        this.setState({
+            codeList:list
+        });
+    }
     //设置输入框的初始值
     setCodeList(){
         const {
@@ -34,9 +40,7 @@ class CaptchaPopup extends React.Component{
             });
             this.inputList[i] = React.createRef();
         }
-        this.setState({
-            codeList:list
-        });
+        this._setState(list);
     }
      //setstate codeList isFocus
      changeCodeFocus(index){
@@ -47,15 +51,12 @@ class CaptchaPopup extends React.Component{
                 val.isFocus = false;
             }
         });
-        this.setState({
-            codeList:this.state.codeList
-        });
+        
+        this._setState();
     }
     changeCodeValue(index,value){
         this.state.codeList[index].value = value;
-        this.setState({
-            codeList:this.state.codeList
-        });
+        this._setState();
     }
     //创建编辑框
     getGrid(){
@@ -72,7 +73,7 @@ class CaptchaPopup extends React.Component{
                     onClick={this.setFocus.bind(this,i)}>
                         <span>{codeList[i].value}</span>
                         <input maxLength="1"
-                            type={type}
+                            type="text"
                             ref={this.inputList[i]}
                             onFocus={this.onFocus.bind(this,i)}
                             onBlur={this.onBlur.bind(this,i)}
@@ -89,7 +90,6 @@ class CaptchaPopup extends React.Component{
     setFocus(index){
         this.changeCodeFocus(index);
         //判断前面是否还有未输入的input框
-        console.log(index,this.props.digits);
         if(index >= this.props.digits){
             let {codeList} = this.state;
             for(let i = 0; i < codeList.length; i++){
@@ -99,9 +99,7 @@ class CaptchaPopup extends React.Component{
                     break;
                 }
             }
-            this.setState({
-                codeList:this.state.codeList
-            });
+            this._setState();
         }else{
             this.inputList[index].current.focus();
         }     
@@ -131,7 +129,22 @@ class CaptchaPopup extends React.Component{
         this.changeCodeFocus();
     }
     onChange(index){
-        const target = event.target;
+        const target = event.target,
+            {type} = this.props;
+        if(type == 'number'){
+            let reg = exp.num;
+            if(!reg.test(target.value)){
+                this.state.codeList[index].value = event.target.value.replace(exp.notNumber,'');
+                return ;
+            }
+        }
+        if(type == 'text'){
+            let reg = exp.numberAndLetter;
+            if(!reg.test(target.value)){
+                this.state.codeList[index].value = event.target.value.replace(exp.notNumberAndLetter,'');
+                return ;
+            }
+        }
         this.state.codeList[index].value = target.value;
         
     }

@@ -10,7 +10,7 @@ const captchaPopupList = [
         code:`<CaptchaPopup digits={4} />`
     },
     {
-        tem:<CaptchaPopup digits={4} />,
+        tem:<CaptchaPopup type="number" />,
         code:`<CaptchaPopup type="number" />`
     },
     {
