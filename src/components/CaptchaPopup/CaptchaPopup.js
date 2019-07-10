@@ -64,7 +64,6 @@ class CaptchaPopup extends React.Component{
             list = [],
             {
                 digits,
-                type
             } = this.props;
         for(let i = 0; i < digits; i++){         
             list.push(
@@ -125,7 +124,7 @@ class CaptchaPopup extends React.Component{
     onFocus(index){
         this.changeCodeFocus(index);
     }
-    onBlur(index){
+    onBlur(){
         this.changeCodeFocus();
     }
     onChange(index){
@@ -145,7 +144,7 @@ class CaptchaPopup extends React.Component{
                 return ;
             }
         }
-        this.state.codeList[index].value = target.value;
+        this.changeCodeValue(index,target.value.substr(0,1));
         
     }
     render(){
@@ -168,11 +167,15 @@ CaptchaPopup.propTypes = {
     type:PropTypes.string,
     focus:PropTypes.bool,
     autoSubmit:PropTypes.bool,
+    popupKeyboard:PropTypes.bool,
+    callback:PropTypes.func,
 }
 CaptchaPopup.defaultProps = {
     digits:6,
     type:'text',
     focus:false,
     autoSubmit:false,
+    popupKeyboard:false,
+    callback:null
 }
 export default CaptchaPopup;

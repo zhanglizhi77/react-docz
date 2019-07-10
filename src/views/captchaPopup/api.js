@@ -18,28 +18,22 @@ const apiList = [
         default:'false'
     },
     {
+        attr:'popupKeyboard',
+        desc:'是否弹出自定义数字键盘',
+        type:'boolean',
+        default:'false'
+    },
+    {
         attr:'autoSubmit',
         desc:'是否填写完成自动提交',
         type:'boolean',
         default:'false'
     },
     {
-        attr:'block',
-        desc:'自适应父级宽度',
-        type:'boolean',
-        default:'false'
-    },
-    {
-        attr:'size',
-        desc:'设置按钮大小，可选值为 small big middle 或者不设',
-        type:'string',
-        default:'big'
-    },
-    {
-        attr:'shape',
-        desc:'设置按钮形状，可选值为 circle、 square 或者不设',
-        type:'string',
-        default:'square'
+        attr:'callback',
+        desc:'用于接收填写内容的callback方法或自动提交的callback',
+        type:'function',
+        default:'null'
     },
 ]
 export default apiList;
