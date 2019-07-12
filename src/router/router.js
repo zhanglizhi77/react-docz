@@ -8,10 +8,12 @@ let AppRouter = ()=>{
     return (
         <HashRouter>
             <App>
-                <Route path="/hello" component={HelloComponent} />
-                <Route path="/button" component={ButtonComponent} />
-                <Route path="/captchaPopup" component={CaptchaPopupComponent} />
-                {/* <Redirect path="/" to={{pathname: '/hello'}} /> */}
+                <Switch>
+                    <Route path="/hello" component={HelloComponent} />
+                    <Route path="/button" component={ButtonComponent} />
+                    <Route path="/captchaPopup" component={CaptchaPopupComponent} />
+                    <Redirect from="/"  to="/hello"/>
+                </Switch>    
             </App>               
         </HashRouter>
     );
